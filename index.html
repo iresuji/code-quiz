@@ -11,9 +11,12 @@
 </head>
 
 <body>
-  <div class="scores"><a href="highscores.html">View Highscores</a></div>
+  <nav class="header">
+    <div class="scores"><a href="highscores.html">View Highscores</a></div>
 
-  <div class="timer">Time: <span id="time">0</span></div>
+    <div class="timer">Time: <span id="time">0</span></div>
+  </nav>
+
 
   <div class="wrapper">
     <div id="start-screen" class="start">
@@ -28,7 +31,12 @@
 
     <div id="questions" class="hide">
       <h2 id="question-title"></h2>
-      <div id="choices" class="choices"></div>
+
+      <div id="one" class="choices"></div>
+      <div id="two" class="choices"></div>
+      <div id="three" class="choices"></div>
+      <div id="four" class="choices"></div>
+      <div id="answerResponse" class="choices"></div>
 
     </div>
 
@@ -45,7 +53,6 @@
   </div>
 
   <script src="./js/logic.js"></script>
-  <script src="./js/questions.js"></script>
 </body>
 
 </html>
