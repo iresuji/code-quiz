@@ -33,6 +33,7 @@ var timer = document.getElementById("timer"); // Timer Variable
 var startScore = 0;
 var questionIndex = 0;
 
+var highScoreArray = [] // Global variable 
 
 ////////////QUESTIONS////////////////
 
@@ -138,6 +139,44 @@ function checkAnswer(event) {
     showQuestions();
 }
 
+// GO TO "ALL DONE" PAGE AND SHOW FINAL SCORE
+function showFinalScore() { //Function to go to page when time out or quiz complete 
+    quizQuestionsPage.style.display = "none"; // Hide Questions Page
+    highScoreButtons.style.display = "none"; // Hide Questions Page
+    finalScorePage.style.display = "block"; // Show Final Score Page 
+    finalScoreIs.style.display = "block" // Show Final Score
+    initials.style.display = "block" // Show initial input
+    initialButton.style.display = "block" // Show initial button
+    initialInput.style.display = "block" // Show initial input
+
+    finalScoreIs.textContent = "Your final score is " + secondsLeft;
+    initialButton.textContent = "Submit"; // Form button 
+    initials.textContent = "Enter Your Initials: "; // Form text
+} // end of showFinalScore
+
+// SHOWS ALL HIGH SCORES 
+function showHighScores() {
+    header.style.display = "none"; // Hide header 
+    allDone.style.display = "none"; // Hide all done
+    finalScoreIs.style.display = "none" // Hide Final Score
+    initials.style.display = "none" // Hide initial input
+    initialButton.style.display = "none" // Hide initial button
+    initialInput.style.display = "none" // Hide initial button
+    highScoreButtons.style.display = "block"; // Show Final Score Page 
+
+    var getInitials = document.getElementById("initialInput").value; // captures the value of the initials 
+
+    var highScoreArray = JSON.parse(localStorage.getItem("highScore")) || [];
+
+    var localStorageArray = { score: secondsLeft, initials: getInitials };
+    highScoreArray.push(localStorageArray)
+    localStorage.setItem("highScore", JSON.stringify(highScoreArray)); // Adds array 
+
+    var highScores = getInitials + ": " + secondsLeft; // add in + getInitials when read it
+
+    $("#highScoreList").append(highScores) // Appends high score & initials
+}
+
 
 ////////////EVENT LISTENERS////////////////
 
@@ -160,4 +199,10 @@ choice3.addEventListener("click", function (event) {
 })
 choice4.addEventListener("click", function (event) {
     checkAnswer(event);
+})
+
+// CLICK TO VIEW HIGH SCORES - DOES NOT WORK 
+score.addEventListener("click", function () {
+    showHighScores();
+    console.log("view high scores")
 })
