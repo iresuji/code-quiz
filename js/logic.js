@@ -110,6 +110,34 @@ function showQuestions() {
     choice4.setAttribute("data-answer", q.four);
 }
 
+// CHECK TO SEE IF ANSWER IS CORRECT
+function checkAnswer(event) {
+    event.preventDefault();
+
+    var answer = event.currentTarget.dataset.answer;
+    var correctAnswer = null;
+
+    if (quizQuestions[questionIndex].correct === answer) {
+        correctAnswer = answer;
+    }
+    if (answer === correctAnswer) {
+        answerResponse.textContent = "Correct!"; // If correct, say correct
+    } else {
+        answerResponse.textContent = "Wrong!"; // If wrong, say wrong & deduct 10 points
+        secondsLeft -= 10
+        if (secondsLeft < 0) {
+            secondsLeft = 0;
+        }
+    }
+    if (quizQuestions.length === questionIndex + 1) {
+        showFinalScore(); // If it has gone through all questions, show final score
+        return; // If not, print the next question
+    }
+    questionIndex++;
+    showQuestions();
+}
+
+
 ////////////EVENT LISTENERS////////////////
 
 // START QUIZ - WORKS 
