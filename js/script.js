@@ -2,7 +2,7 @@
 
 
 var header = document.querySelector(".header");
-var score = document.querySelector(".score");
+var score = document.querySelector(".scores");
 var submitButton = document.getElementById("start");
 
 var quizQuestionHeader = document.getElementById("question-title");
@@ -21,14 +21,14 @@ var quizChallengePage = document.getElementById("start-screen");
 var finalScorePage = document.getElementById("end-screen");
 var highScoreButtons = document.getElementById("wrapper");
 
-var initialButton = document.getElementById("start");
+var initialButton = document.getElementById("initialButton");
 var initials = document.getElementById("initials");
 var initialInput = document.getElementById("initialInput");
 
 var allDone = document.getElementById("allDone");
-var allDoneButtons = document.getElementById("submit");
+var allDoneButtons = document.getElementById("form-inline");
 
-var timer = document.getElementById("timer"); // Timer Variable 
+var timer = document.querySelector(".timer"); // Timer Variable 
 
 var startScore = 0;
 var questionIndex = 0;
@@ -85,6 +85,7 @@ function startQuiz() {
     quizChallengePage.style.display = "none"; // Hide Rules 
     quizQuestionsPage.style.display = "block"; // Show Quiz Questions Page
 
+
     secondsLeft = 90; // seconds in Timer 
 
     var timerInterval = setInterval(function () {
@@ -95,6 +96,17 @@ function startQuiz() {
             showFinalScore();
         }
     }, 1000);
+}
+
+// FIRST PAGE 
+function codeQuizChallenge() {
+    quizChallengePage.style.display = "block"; // Shows Rules 
+    header.style.display = "block"; // Shows Header
+    quizQuestionsPage.style.display = "none"; // Hide Quiz Questions Page
+    finalScorePage.style.display = "none";   // Hide Final score Page 
+
+    var startScore = 0; // Starting time 
+    timer.textContent = "Time: " + startScore; // Holder text in nav bar 
 }
 
 // SHOW QUESTIONS
@@ -177,6 +189,12 @@ function showHighScores() {
     $("#highScoreList").append(highScores) // Appends high score & initials
 }
 
+// RESETTING GLOBAL VARIABLES WHEN RESTART QUIZ 
+function resetVariables() {
+    startScore = 0;
+    questionIndex = 0;
+}
+
 
 ////////////EVENT LISTENERS////////////////
 
@@ -201,8 +219,31 @@ choice4.addEventListener("click", function (event) {
     checkAnswer(event);
 })
 
-// CLICK TO VIEW HIGH SCORES - DOES NOT WORK 
+// CLICK TO VIEW HIGH SCORES
 score.addEventListener("click", function () {
     showHighScores();
     console.log("view high scores")
 })
+
+// CLICK INTIAL BUTTON TO SHOW HIGH SCORES
+initialButton.addEventListener("click", function () {
+    showHighScores();
+    console.log("initial button")
+})
+
+// CLEAR HIGH SCORES
+clearHighScore.addEventListener("click", function () {
+    localStorage.clear();
+})
+
+// GO BACK BUTTON EVENT liSTENER 
+goBack.addEventListener("click", function () { // Go back to the home page
+    $("#highScoreList").empty() // clears out container
+    $("#initialInput").val("") // clears out the value in initial input 
+    resetVariables()
+    codeQuizChallenge();
+    console.log("restart quiz")
+})
+
+// Page starts at home page 
+codeQuizChallenge(); 
