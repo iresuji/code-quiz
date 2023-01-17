@@ -35,6 +35,44 @@ var questionIndex = 0;
 
 //QUESTIONS
 
+var quizQuestions = [
+    {
+        "quizQuestionHeader": "Commonly used Data Types do NOT Include:",
+        "one": "strings",
+        "two": "booleans",
+        "three": "alerts",
+        "four": "numbers",
+        "correct": "alerts",
+    }, {
+        "quizQuestionHeader": "The condition in an if / else statement is enclosed within ________.",
+        "one": "quotes",
+        "two": "curly brackets",
+        "three": "parenthesis",
+        "four": "square brackets",
+        "correct": "parenthesis",
+    }, {
+        "quizQuestionHeader": "Arrays in JavaScript can be used to store ________.",
+        "one": "numbers and strings",
+        "two": "other arrays",
+        "three": "booleans",
+        "four": "all of the above",
+        "correct": "all of the above",
+    }, {
+        "quizQuestionHeader": "String values must be enclosed within ________ when being assigned to variables",
+        "one": "commas",
+        "two": "curly brackets",
+        "three": "quotes",
+        "four": "parenthesis",
+        "correct": "quotes",
+    }, {
+        "quizQuestionHeader": "A very useful tool used for developing and debugging for printing content to the debugger is:",
+        "one": "JavaScript",
+        "two": "terminal / bash",
+        "three": "for loops",
+        "four": "console.log",
+        "correct": "console.log",
+    },
+]
 
 
 //FUNCTIONS
@@ -57,10 +95,40 @@ function startQuiz() {
     }, 1000);
 }
 
+// SHOW QUESTIONS
+function showQuestions() {
+    var q = quizQuestions[questionIndex];
+
+    quizQuestionHeader.innerHTML = q.quizQuestionHeader;
+    choice1.innerHTML = q.one;
+    choice1.setAttribute("data-answer", q.one);
+    choice2.innerHTML = q.two;
+    choice2.setAttribute("data-answer", q.two);
+    choice3.innerHTML = q.three;
+    choice3.setAttribute("data-answer", q.three);
+    choice4.innerHTML = q.four;
+    choice4.setAttribute("data-answer", q.four);
+}
+
 ////////////EVENT LISTENERS////////////////
 
 // START QUIZ - WORKS 
 submitButton.addEventListener("click", function () {
     startQuiz()
     console.log("start")
+})
+
+// EVENT LISTENERS WHEN USER CLICKS ANSWERS 
+showQuestions();
+choice1.addEventListener("click", function (event) {
+    checkAnswer(event);
+})
+choice2.addEventListener("click", function (event) {
+    checkAnswer(event);
+})
+choice3.addEventListener("click", function (event) {
+    checkAnswer(event);
+})
+choice4.addEventListener("click", function (event) {
+    checkAnswer(event);
 })
