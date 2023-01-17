@@ -1,5 +1,6 @@
-//VARIABLE NEEDED
-// var body = document.body;
+////////////VARIABLES////////////////
+
+
 var header = document.querySelector(".header");
 var score = document.querySelector(".score");
 var submitButton = document.getElementById("start");
@@ -33,7 +34,7 @@ var startScore = 0;
 var questionIndex = 0;
 
 
-//QUESTIONS
+////////////QUESTIONS////////////////
 
 var quizQuestions = [
     {
@@ -75,7 +76,7 @@ var quizQuestions = [
 ]
 
 
-//FUNCTIONS
+////////////FUNCTIONS////////////////
 
 
 // Start quiz
