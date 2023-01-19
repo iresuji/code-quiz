@@ -86,3 +86,44 @@ li:nth-child(odd) {
   top: 10px;
   right: 10px;
 }
+
+#finalScoreIs {
+  padding-left: 15% !important;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#highScores {
+  text-align: left;
+  padding-top: 150px;
+  font-weight: bolder;
+  padding-top: none !important;
+}
+
+#highScoreList {
+  background-color: lavender;
+  font-size: 20px;
+  padding-right: 75%;
+}
+
+#highScoreButtons {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+
+/* All Done Initial Page */
+
+.row {
+  align-items: center !important;
+  text-align: center !important;
+  padding-left: 15% !important;
+  padding-right: 15% !important;
+}
+
+#allDone {
+  font-weight: bolder;
+  padding-top: 100px;
+  padding-left: 15% !important;
+}

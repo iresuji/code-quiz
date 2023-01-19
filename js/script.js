@@ -13,13 +13,13 @@ var choice4 = document.getElementById("four");
 var correct = document.getElementById("correct");
 var answerResponse = document.getElementById("answerResponse");
 
-var finalScoreIs = document.getElementById("final-score");
+var finalScoreIs = document.getElementById("finalScoreIs");
 var quizQuestionsPage = document.getElementById("questions");
-var questionButton = document.querySelector(".choices");
+var questionButton = document.querySelector(".questionButton");
 
 var quizChallengePage = document.getElementById("start-screen");
 var finalScorePage = document.getElementById("end-screen");
-var highScoreButtons = document.getElementById("wrapper");
+var highScoreButtons = document.getElementById("HighScoreBtn");
 
 var initialButton = document.getElementById("initialButton");
 var initials = document.getElementById("initials");
@@ -30,10 +30,12 @@ var allDoneButtons = document.getElementById("form-inline");
 
 var timer = document.querySelector(".timer"); // Timer Variable 
 
+var clearHighScore = document.getElementById("clear");
+
 var startScore = 0;
 var questionIndex = 0;
 
-var highScoreArray = [] // Global variable 
+
 
 ////////////QUESTIONS////////////////
 
@@ -144,6 +146,7 @@ function checkAnswer(event) {
         }
     }
     if (quizQuestions.length === questionIndex + 1) {
+        //window.location.href = '../highscores.html';
         showFinalScore(); // If it has gone through all questions, show final score
         return; // If not, print the next question
     }
@@ -151,10 +154,10 @@ function checkAnswer(event) {
     showQuestions();
 }
 
+
 // GO TO "ALL DONE" PAGE AND SHOW FINAL SCORE
 function showFinalScore() { //Function to go to page when time out or quiz complete 
     quizQuestionsPage.style.display = "none"; // Hide Questions Page
-    highScoreButtons.style.display = "none"; // Hide Questions Page
     finalScorePage.style.display = "block"; // Show Final Score Page 
     finalScoreIs.style.display = "block" // Show Final Score
     initials.style.display = "block" // Show initial input
@@ -164,7 +167,10 @@ function showFinalScore() { //Function to go to page when time out or quiz compl
     finalScoreIs.textContent = "Your final score is " + secondsLeft;
     initialButton.textContent = "Submit"; // Form button 
     initials.textContent = "Enter Your Initials: "; // Form text
-} // end of showFinalScore
+} // end of showFinalScore 
+
+var highScoreArray = [] // Global variable  
+
 
 // SHOWS ALL HIGH SCORES 
 function showHighScores() {
@@ -174,7 +180,6 @@ function showHighScores() {
     initials.style.display = "none" // Hide initial input
     initialButton.style.display = "none" // Hide initial button
     initialInput.style.display = "none" // Hide initial button
-    highScoreButtons.style.display = "block"; // Show Final Score Page 
 
     var getInitials = document.getElementById("initialInput").value; // captures the value of the initials 
 
@@ -186,7 +191,8 @@ function showHighScores() {
 
     var highScores = getInitials + ": " + secondsLeft; // add in + getInitials when read it
 
-    $("#highScoreList").append(highScores) // Appends high score & initials
+    window.location.href = '../highscores.html';
+
 }
 
 // RESETTING GLOBAL VARIABLES WHEN RESTART QUIZ 
@@ -231,19 +237,6 @@ initialButton.addEventListener("click", function () {
     console.log("initial button")
 })
 
-// CLEAR HIGH SCORES
-clearHighScore.addEventListener("click", function () {
-    localStorage.clear();
-})
-
-// GO BACK BUTTON EVENT liSTENER 
-goBack.addEventListener("click", function () { // Go back to the home page
-    $("#highScoreList").empty() // clears out container
-    $("#initialInput").val("") // clears out the value in initial input 
-    resetVariables()
-    codeQuizChallenge();
-    console.log("restart quiz")
-})
 
 // Page starts at home page 
 codeQuizChallenge(); 
