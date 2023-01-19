@@ -154,7 +154,7 @@ function showHighScores() {
     highScoreArray.push(localStorageArray)
     localStorage.setItem("highScore", JSON.stringify(highScoreArray)); // Adds array 
     var highScores = getInitials + ": " + secondsLeft; // add in + getInitials when read it
-    window.location.href = '../highscores.html';
+    window.location.href = './highscores.html';
 }
 
 // RESETTING GLOBAL VARIABLES WHEN RESTART QUIZ 
